@@ -20,7 +20,7 @@
   </style>
 </head>
 <body>
-  <div id="root" data-composition-id="hyperframes-background" data-start="0" data-duration="60" data-width="1080" data-height="1920">
+  <div id="root" data-composition-id="hyperframes-background" data-start="0" data-duration="10" data-width="1080" data-height="1920">
     <div class="orb" id="orb-a"></div>
     <div class="orb" id="orb-b"></div>
     <div class="orb" id="orb-c"></div>
@@ -32,15 +32,15 @@
   <script>
     window.__timelines = window.__timelines || {};
     const tl = gsap.timeline({ paused: true });
-    tl.to('#orb-a', { x: 260, y: 250, scale: 1.18, duration: 20, ease: 'sine.inOut' }, 0)
-      .to('#orb-a', { x: -80, y: 520, scale: .92, duration: 20, ease: 'sine.inOut' }, 20)
-      .to('#orb-a', { x: 0, y: 0, scale: 1, duration: 20, ease: 'sine.inOut' }, 40)
-      .to('#orb-b', { x: -250, y: -180, scale: 1.2, duration: 30, ease: 'sine.inOut' }, 0)
-      .to('#orb-b', { x: 0, y: 180, scale: .9, duration: 30, ease: 'sine.inOut' }, 30)
-      .to('#orb-c', { x: 260, y: -220, scale: 1.15, duration: 30, ease: 'sine.inOut' }, 0)
-      .to('#orb-c', { x: -100, y: 0, scale: .95, duration: 30, ease: 'sine.inOut' }, 30)
-      .to('#ring', { rotation: 360, scale: 1.08, duration: 60, ease: 'none' }, 0)
-      .to('#ring-inner', { rotation: -360, scale: .9, duration: 60, ease: 'none' }, 0);
+    tl.to('#orb-a', { x: 260, y: 250, scale: 1.18, duration: 3, ease: 'sine.inOut' }, 0)
+      .to('#orb-a', { x: -80, y: 520, scale: .92, duration: 3, ease: 'sine.inOut' }, 3)
+      .to('#orb-a', { x: 0, y: 0, scale: 1, duration: 4, ease: 'sine.inOut' }, 6)
+      .to('#orb-b', { x: -250, y: -180, scale: 1.2, duration: 5, ease: 'sine.inOut' }, 0)
+      .to('#orb-b', { x: 0, y: 180, scale: .9, duration: 5, ease: 'sine.inOut' }, 5)
+      .to('#orb-c', { x: 260, y: -220, scale: 1.15, duration: 5, ease: 'sine.inOut' }, 0)
+      .to('#orb-c', { x: -100, y: 0, scale: .95, duration: 5, ease: 'sine.inOut' }, 5)
+      .to('#ring', { rotation: 360, scale: 1.08, duration: 10, ease: 'none' }, 0)
+      .to('#ring-inner', { rotation: -360, scale: .9, duration: 10, ease: 'none' }, 0);
     window.__timelines['hyperframes-background'] = tl;
   </script>
 </body>
