@@ -1,5 +1,5 @@
 import React from 'react';
-import {AbsoluteFill, Audio, Sequence, staticFile, useCurrentFrame, useVideoConfig, interpolate} from 'remotion';
+import {AbsoluteFill, Audio, OffthreadVideo, Sequence, staticFile, useCurrentFrame, useVideoConfig, interpolate} from 'remotion';
 
 const scenes = [
   {eyebrow:'ДЕНЬГИ В БЛОГИНГЕ', title:'Почему одни блогеры\nзарабатывают больше?', body:'Подписчики — не вся история.', accent:'#B8FF5C', tag:'СЕКРЕТ №1'},
@@ -18,7 +18,7 @@ const Scene: React.FC<{s: typeof scenes[number]; index: number}> = ({s,index}) =
   const y = interpolate(frame,[0,18],[42,0],{extrapolateRight:'clamp'});
   const pulse = 1 + Math.sin(frame/10)*0.025;
   const progress = Math.min(100,(frame/(fps*10))*100);
-  return <AbsoluteFill style={{background:'#080B14',color:'#F5F7FA',fontFamily:font,opacity,overflow:'hidden'}}>
+  return <AbsoluteFill style={{background:'transparent',color:'#F5F7FA',fontFamily:font,opacity,overflow:'hidden'}}>
     <AbsoluteFill style={{background:'radial-gradient(ellipse at ' + (20+index*11) + '% ' + (22+index*8) + '%, ' + s.accent + '22, transparent 45%)'}} />
     <div style={{position:'absolute',top:90,left:70,right:70,display:'flex',justifyContent:'space-between',fontSize:25,letterSpacing:4,color:'#A5ADBF',fontWeight:700}}>
       <span>CREATOR ECONOMY</span><span>0{index+1} / 06</span>
@@ -48,6 +48,7 @@ const Scene: React.FC<{s: typeof scenes[number]; index: number}> = ({s,index}) =
 
 export const BloggerEarnings: React.FC = () => (
   <AbsoluteFill style={{background:'#080B14'}}>
+    <OffthreadVideo src={staticFile('hyperframes-background.mp4')} muted style={{width:'100%',height:'100%',objectFit:'cover'}} />
     {scenes.map((s,i)=><Sequence key={s.eyebrow} from={i*300} durationInFrames={300}><Scene s={s} index={i}/></Sequence>)}
     <Audio src={staticFile('voice.mp3')} volume={1}/>
   </AbsoluteFill>
