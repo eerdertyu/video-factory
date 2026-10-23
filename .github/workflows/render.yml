@@ -2,6 +2,9 @@ name: Render Blogger Earnings Short
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
 
 permissions:
   contents: read
