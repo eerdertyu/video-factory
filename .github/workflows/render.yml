@@ -31,7 +31,7 @@ jobs:
           pip install edge-tts
       - name: Generate Russian neural voice
         run: |
-          edge-tts --voice ru-RU-SvetlanaNeural --rate=+3% --text-file public/narration.txt --write-media public/voice.mp3 --write-subtitles public/voice.srt
+          edge-tts --voice ru-RU-SvetlanaNeural --rate=+3% --file public/narration.txt --write-media public/voice.mp3 --write-subtitles public/voice.srt
       - name: Render MP4
         run: npx remotion render src/index.ts BloggerEarnings out/blogger-earnings-short.mp4 --codec h264 --crf 18
       - name: Upload MP4 artifact
