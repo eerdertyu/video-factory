@@ -2,9 +2,6 @@ name: Render Blogger Earnings Short
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
 
 permissions:
   contents: read
@@ -35,7 +32,7 @@ jobs:
         run: |
           edge-tts --voice ru-RU-SvetlanaNeural --rate=+3% --file public/narration.txt --write-media public/voice.mp3 --write-subtitles public/voice.srt
       - name: Render animated background with HyperFrames
-        run: npx --yes hyperframes render --composition hyperframes/index.html --output public/hyperframes-background.mp4 --fps 30 --quality standard
+        run: npx --yes hyperframes render --composition hyperframes/index.html --output public/hyperframes-background.mp4 --fps 30 --quality draft --workers 1
       - name: Render final MP4 with Remotion
         run: npx remotion render src/index.ts BloggerEarnings out/blogger-earnings-short.mp4 --codec h264 --crf 18
       - name: Upload MP4 artifact
