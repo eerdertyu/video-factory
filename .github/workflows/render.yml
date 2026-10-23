@@ -19,7 +19,9 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
+      - name: Install FFmpeg
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
@@ -32,7 +34,9 @@ jobs:
       - name: Generate Russian neural voice
         run: |
           edge-tts --voice ru-RU-SvetlanaNeural --rate=+3% --file public/narration.txt --write-media public/voice.mp3 --write-subtitles public/voice.srt
-      - name: Render MP4
+      - name: Render animated background with HyperFrames
+        run: npx --yes hyperframes render --composition hyperframes/index.html --output public/hyperframes-background.mp4 --fps 30 --quality standard
+      - name: Render final MP4 with Remotion
         run: npx remotion render src/index.ts BloggerEarnings out/blogger-earnings-short.mp4 --codec h264 --crf 18
       - name: Upload MP4 artifact
         uses: actions/upload-artifact@v4
