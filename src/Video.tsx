@@ -48,7 +48,7 @@ const Scene: React.FC<{s: typeof scenes[number]; index: number}> = ({s,index}) =
 
 export const BloggerEarnings: React.FC = () => (
   <AbsoluteFill style={{background:'#080B14'}}>
-    <OffthreadVideo src={staticFile('hyperframes-background.mp4')} muted style={{width:'100%',height:'100%',objectFit:'cover'}} />
+    <OffthreadVideo src={staticFile('hyperframes-background.mp4')} loop muted style={{width:'100%',height:'100%',objectFit:'cover'}} />
     {scenes.map((s,i)=><Sequence key={s.eyebrow} from={i*300} durationInFrames={300}><Scene s={s} index={i}/></Sequence>)}
     <Audio src={staticFile('voice.mp3')} volume={1}/>
   </AbsoluteFill>
