@@ -1,0 +1,40 @@
+name: Render Blogger Earnings Short
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: |
+          npm install
+          python -m pip install --upgrade pip
+          pip install edge-tts
+      - name: Generate Russian neural voice
+        run: |
+          edge-tts --voice ru-RU-SvetlanaNeural --rate=+3% --text-file public/narration.txt --write-media public/voice.mp3 --write-subtitles public/voice.srt
+      - name: Render MP4
+        run: npx remotion render src/index.ts BloggerEarnings out/blogger-earnings-short.mp4 --codec h264 --crf 18
+      - name: Upload MP4 artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: blogger-earnings-short-mp4
+          path: out/blogger-earnings-short.mp4
+          if-no-files-found: error
+          retention-days: 14
